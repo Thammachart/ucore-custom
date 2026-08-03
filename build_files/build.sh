@@ -25,3 +25,12 @@ dnf5 install -y fish neovim
 #### Example for enabling a System Unit File
 
 # systemctl enable podman.socket
+
+mkdir -p /usr/lib/systemd/logind.conf.d && \
+    cat <<'EOF' > /usr/lib/systemd/logind.conf.d/10-lid-ignore.conf
+[Login]
+HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+HandleLidSwitchDocked=ignore
+LidSwitchIgnoreInhibited=yes
+EOF
